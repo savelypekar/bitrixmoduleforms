@@ -25,8 +25,8 @@ Class savmaxru_forms extends CModule
 		global $DB, $DBType, $APPLICATION;
 
 		$errors = null;
-		if (!$DB->Query("SELECT 'x' FROM vendor_questionary_book", true))
-			$errors = $DB->RunSQLBatch($_SERVER["DOCUMENT_ROOT"]."/local/modules/".$this->MODULE_ID."/install/db/".$DBType."/install.sql");
+		//if (!$DB->Query("SELECT 'x' FROM vendor_questionary_book", true))
+		//	$errors = $DB->RunSQLBatch($_SERVER["DOCUMENT_ROOT"]."/local/modules/".$this->MODULE_ID."/install/db/".$DBType."/install.sql");
 
 		if (!empty($errors))
 		{
@@ -74,11 +74,25 @@ Class savmaxru_forms extends CModule
 		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/local/modules/".$this->MODULE_ID."/install/js", $_SERVER["DOCUMENT_ROOT"]."/local/js", true, true);
 		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/local/modules/".$this->MODULE_ID."/install/components", $_SERVER["DOCUMENT_ROOT"]."/local/components", true, true);
 
+		$siteId = \CSite::GetDefSite();
+		\Bitrix\Main\UrlRewriter::add($siteId, [
+			'CONDITION' => '#^/forms/(\\w+)/([0-9a-z]+)\\/?$#',
+			'RULE' => 'mode=$1&id=$2',
+			'ID' => 'savmaxru:forms',
+			'PATH' => '/forms/index.php',
+		]);
+
 		return true;
 	}
 
 	function UnInstallFiles()
 	{
+		$siteId = \CSite::GetDefSite();
+		\Bitrix\Main\UrlRewriter::delete(
+			$siteId,
+			['ID' => 'savmaxru:forms']
+		);
+
 		return true;
 	}
 
@@ -101,9 +115,6 @@ Class savmaxru_forms extends CModule
 
 		$this->errors = array();
 
-
-		//UnRegisterModule($this->MODULE_ID);
-
 		$step = (int)$step;
 		if($step<2)
 		{
@@ -120,5 +131,6 @@ Class savmaxru_forms extends CModule
 			$GLOBALS["up_module_installer_errors"] = $this->errors;
 			$APPLICATION->IncludeAdminFile(Loc::getMessage("VENDOR_MODULENAME_MODULE_UNINSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/local/modules/".$this->MODULE_ID."/install/unstep2.php");
 		}
+		UnRegisterModule($this->MODULE_ID);
 	}
 }

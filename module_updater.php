@@ -25,17 +25,10 @@ $current_version = 0;
 // local updaters
 if($current_version <= 0)
 {
-	if ($updater->TableExists('vendor_questionary_book'))
+	if (!$updater->TableExists('savmaxru_forms_interview'))
 	{
 		$updater->Query("
-			DROP TABLE vendor_questionary_book;
-		");
-	}
-
-	if (!$updater->TableExists('vendor_questionary_interview'))
-	{
-		$updater->Query("
-			CREATE TABLE vendor_questionary_interview
+			CREATE TABLE savmaxru_forms_interview
 			(
 				ID int not null auto_increment,
 				ID_AUTHOR int not null,
@@ -49,10 +42,10 @@ if($current_version <= 0)
 		");
 	}
 
-	if (!$updater->TableExists('vendor_questionary_question'))
+	if (!$updater->TableExists('savmaxru_forms_question'))
 	{
 		$updater->Query("
-			CREATE TABLE vendor_questionary_question
+			CREATE TABLE savmaxru_forms_question
 			(
 				ID int not null auto_increment,
 				TYPE varchar(20) not null,
@@ -64,10 +57,10 @@ if($current_version <= 0)
 		");
 	}
 
-	if (!$updater->TableExists('vendor_questionary_option'))
+	if (!$updater->TableExists('savmaxru_forms_option'))
 	{
 		$updater->Query("
-			CREATE TABLE vendor_questionary_option
+			CREATE TABLE savmaxru_forms_option
 			(
 				ID int not null auto_increment,
 				ID_QUESTION int not null,
@@ -79,10 +72,10 @@ if($current_version <= 0)
 		");
 	}
 
-	if (!$updater->TableExists('vendor_questionary_answer_result'))
+	if (!$updater->TableExists('savmaxru_forms_answer_result'))
 	{
 		$updater->Query("
-			CREATE TABLE vendor_questionary_answer_result
+			CREATE TABLE savmaxru_forms_answer_result
 			(
 				ID int not null auto_increment,
 				ID_RESULT int not null,
@@ -94,10 +87,10 @@ if($current_version <= 0)
 		");
 	}
 
-	if (!$updater->TableExists('vendor_questionary_answer_to_question'))
+	if (!$updater->TableExists('savmaxru_forms_answer_to_question'))
 	{
 		$updater->Query("
-			CREATE TABLE vendor_questionary_answer_to_question
+			CREATE TABLE savmaxru_forms_answer_to_question
 			(
 				ID int not null auto_increment,
 				ID_QUESTION int not null ,
@@ -108,10 +101,10 @@ if($current_version <= 0)
 		");
 	}
 
-	if (!$updater->TableExists('vendor_questionary_answer_option'))
+	if (!$updater->TableExists('savmaxru_forms_answer_option'))
 	{
 		$updater->Query("
-			CREATE TABLE vendor_questionary_answer_option
+			CREATE TABLE savmaxru_forms_answer_option
 			(
 				ID int not null auto_increment,
 				ID_ANSWER int not null ,

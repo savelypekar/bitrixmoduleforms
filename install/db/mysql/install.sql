@@ -11,7 +11,6 @@ CREATE TABLE savmaxru_forms_interview
 	PRIMARY KEY(ID)
 );
 
-
 CREATE TABLE savmaxru_forms_question
 (
     ID int not null auto_increment,
@@ -21,7 +20,6 @@ CREATE TABLE savmaxru_forms_question
 
     PRIMARY KEY(ID)
 );
-
 
 CREATE TABLE savmaxru_forms_option
 (
@@ -33,7 +31,6 @@ CREATE TABLE savmaxru_forms_option
     PRIMARY KEY(ID)
 );
 
-
 CREATE TABLE savmaxru_forms_answer_result
 (
     ID int not null auto_increment,
@@ -44,7 +41,6 @@ CREATE TABLE savmaxru_forms_answer_result
     PRIMARY KEY(ID)
 );
 
-
 CREATE TABLE savmaxru_forms_answer_to_question
 (
     ID int not null auto_increment,
@@ -53,7 +49,6 @@ CREATE TABLE savmaxru_forms_answer_to_question
 
     PRIMARY KEY(ID)
 );
-
 
 CREATE TABLE savmaxru_forms_answer_option
 (
