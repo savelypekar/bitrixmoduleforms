@@ -9,8 +9,9 @@ use Bitrix\Main\Localization\Loc;
 class CSavmaxruFormsRouter extends CBitrixComponent
 {
 	private $modeNames = [
-		"result" =>'result-list',
-		'' => 'form-list',
+		"edit" =>'edit',
+		"result" =>'resultlist',
+		'' => 'myforms',
 	];
 
 	private function getModeName()
@@ -26,8 +27,6 @@ class CSavmaxruFormsRouter extends CBitrixComponent
 
 	public function executeComponent()
 	{
-		echo $this->arParams['MODE'];
-		echo $this->getModeName();
 		$this->arResult = [
 			'MODE' => $this->getModeName(),
 			'URL' => $this->arParams['URL'],

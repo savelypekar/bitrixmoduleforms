@@ -2,5 +2,4 @@
 
 <?=$arResult['MODE']?>
 
-
 </div>

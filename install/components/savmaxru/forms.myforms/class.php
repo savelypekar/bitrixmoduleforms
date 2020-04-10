@@ -6,16 +6,19 @@ use Bitrix\Main\Localization\Loc;
 \Bitrix\Main\Loader::includeModule('savmaxru.forms');
 
 
-class CSavmaxruFormsRouter extends CBitrixComponent
+class CSavmaxruFormsMyForms extends CBitrixComponent
 {
-	private $modeNames = ["list","edit","run"];
+	private $modeNames = [
+		"result" =>'result-list',
+		'' => 'form-list',
+	];
 
 	private function getModeName()
 	{
-		$modeName = $this->arParams['MODE'];
-		if( !in_array($modeName, $this->modeNames) )
+		$modeName = $this->modeNames[$this->arParams['MODE']];
+		if($modeName === null)
 		{
-			$modeName = "list";
+			$modeName = $this->modeNames[''];
 		}
 
 		return $modeName;
