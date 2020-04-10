@@ -7,8 +7,7 @@ $APPLICATION->IncludeComponent(
 	'savmaxru:forms.'.$arResult['MODE'],
 	'.default',
 	[
-		'MODE' => $_GET["mode"],
-		'URL' => $_GET["url"],
+		'URL' => $arResult['URL'],
 	]
 );
 
