@@ -49,6 +49,12 @@ Class savmaxru_forms extends CModule {
 
 	function UnInstallFiles()
 	{
+		DeleteDirFilesEx("/forms");
+		DeleteDirFilesEx("/local/js/savmaxru");
+		DeleteDirFilesEx("/local/components/savmaxru");
+		//в дальнейшем нужно удалять будет циклом, чтобы не трогать папку разработчика
+		//вдруг несколько модулей подключено в savmaxru
+
 		$siteId = \CSite::GetDefSite();
 		\Bitrix\Main\UrlRewriter::delete(
 			$siteId,
